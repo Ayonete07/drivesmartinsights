@@ -1,63 +1,16 @@
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import VehicleCard from '../components/VehicleCard';
 import LeadForm from '../components/LeadForm';
 import Footer from '../components/Footer';
+import PartnersSection from '../components/PartnersSection';
+import SearchFilter from '../components/SearchFilter';
+import PromoAd from '../components/PromoAd';
+import { vehicles, Vehicle } from '@/data/vehicles';
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-
-// Sample vehicle data
-const vehicles = [
-  {
-    id: "v1",
-    image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1650&q=80",
-    title: "2023 Audi Q5 Premium",
-    price: "$45,900",
-    description: "Refined luxury SUV with cutting-edge technology and powerful performance.",
-    features: ["AWD", "2.0L Turbo", "Leather", "Virtual Cockpit", "Panoramic Roof"]
-  },
-  {
-    id: "v2",
-    image: "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1654&q=80",
-    title: "2023 BMW 5 Series",
-    price: "$55,800",
-    description: "Executive sedan that combines dynamic performance with luxurious comfort.",
-    features: ["RWD", "3.0L I6", "Navigation", "Premium Sound", "Driver Assistance"]
-  },
-  {
-    id: "v3",
-    image: "https://images.unsplash.com/photo-1616422285623-13ff0162193c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
-    title: "2023 Mercedes-Benz GLE",
-    price: "$67,000",
-    description: "Sophisticated SUV offering unmatched luxury and innovative technology.",
-    features: ["4MATIC", "3.0L V6", "MBUX", "Burmester Audio", "64-Color Ambient Lighting"]
-  },
-  {
-    id: "v4",
-    image: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80",
-    title: "2023 Tesla Model Y",
-    price: "$49,900",
-    description: "All-electric SUV with impressive range and cutting-edge autonomous features.",
-    features: ["Dual Motor", "AWD", "Autopilot", "15\" Touchscreen", "320mi Range"]
-  },
-  {
-    id: "v5",
-    image: "https://images.unsplash.com/photo-1617037711881-4a7d366d7f75?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80",
-    title: "2023 Lexus RX 350",
-    price: "$52,300",
-    description: "Premium crossover combining refined luxury with Japanese craftsmanship.",
-    features: ["AWD", "3.5L V6", "Lexus Safety System+", "Mark Levinson Audio", "Leather"]
-  },
-  {
-    id: "v6",
-    image: "https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2167&q=80",
-    title: "2023 Porsche Taycan",
-    price: "$88,400",
-    description: "Electric sports car delivering exhilarating performance with zero emissions.",
-    features: ["Electric", "AWD", "800V Architecture", "Porsche Connect", "Adaptive Air Suspension"]
-  }
-];
 
 // About us content
 const aboutContent = {
@@ -74,8 +27,10 @@ const aboutContent = {
 };
 
 const Index = () => {
+  const navigate = useNavigate();
   const [selectedVehicle, setSelectedVehicle] = useState<string | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [filteredVehicles, setFilteredVehicles] = useState<Vehicle[]>(vehicles);
   const aboutRef = useRef<HTMLDivElement>(null);
   const vehiclesRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
@@ -107,8 +62,16 @@ const Index = () => {
     setIsFormOpen(true);
   };
 
+  const handleVehicleDetailsClick = (id: string) => {
+    navigate(`/vehicle/${id}`);
+  };
+
   const handleFormSubmitSuccess = () => {
     setIsFormOpen(false);
+  };
+
+  const handleFilterChange = (filtered: Vehicle[]) => {
+    setFilteredVehicles(filtered);
   };
 
   return (
@@ -130,23 +93,49 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {vehicles.map((vehicle, index) => (
-              <div key={vehicle.id} className="reveal" style={{ animationDelay: `${index * 0.1}s` }}>
-                <VehicleCard
-                  id={vehicle.id}
-                  image={vehicle.image}
-                  title={vehicle.title}
-                  price={vehicle.price}
-                  description={vehicle.description}
-                  features={vehicle.features}
-                  onClick={handleVehicleClick}
-                />
-              </div>
-            ))}
-          </div>
+          <SearchFilter onFilterChange={handleFilterChange} />
+          
+          {filteredVehicles.length === 0 ? (
+            <div className="text-center py-16">
+              <h3 className="text-2xl font-medium mb-2">No vehicles match your search criteria</h3>
+              <p className="text-dssilver-700">Please try adjusting your filters or search term.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredVehicles.map((vehicle, index) => (
+                <div key={vehicle.id} className="reveal" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <VehicleCard
+                    id={vehicle.id}
+                    image={vehicle.image}
+                    title={vehicle.title}
+                    price={vehicle.price}
+                    description={vehicle.description}
+                    features={vehicle.features}
+                    onClick={handleVehicleDetailsClick}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
+      
+      {/* Promo Ad */}
+      <section className="py-10 bg-white">
+        <div className="container mx-auto">
+          <PromoAd 
+            title="Special Financing Offer"
+            description="Qualified buyers can take advantage of 0% APR financing for up to 72 months on select models. Limited time offer."
+            image="https://images.unsplash.com/photo-1586023473134-1e26aac33642?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+            buttonText="See qualifying vehicles"
+            buttonLink="#vehicles"
+            theme="dark"
+          />
+        </div>
+      </section>
+      
+      {/* Partners Section */}
+      <PartnersSection />
       
       {/* About Section */}
       <section id="about" ref={aboutRef} className="py-20 bg-dssilver-50">
