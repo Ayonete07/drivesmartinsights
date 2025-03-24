@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { toast } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 interface LeadFormProps {
   selectedVehicle: string | null;
