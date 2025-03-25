@@ -6,6 +6,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import LeadForm from '@/components/LeadForm';
 import PromoAd from '@/components/PromoAd';
+import SearchFilter from '@/components/SearchFilter';
+import VehicleImageCarousel from '@/components/VehicleImageCarousel';
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { 
   ChevronLeft, 
@@ -23,6 +25,7 @@ const VehicleDetail = () => {
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [filteredVehicles, setFilteredVehicles] = useState(vehicles);
   
   useEffect(() => {
     // Simulate API call with short delay
@@ -45,6 +48,10 @@ const VehicleDetail = () => {
   
   const handleGoBack = () => {
     navigate(-1);
+  };
+
+  const handleFilterChange = (filtered: typeof vehicles) => {
+    setFilteredVehicles(filtered);
   };
   
   if (isLoading) {
@@ -80,37 +87,60 @@ const VehicleDetail = () => {
       </div>
     );
   }
+
+  // Prepare vehicle images for the carousel
+  const vehicleImages = [
+    {
+      src: vehicle.image,
+      alt: `${vehicle.title} - Main View`,
+      type: 'exterior' as const
+    },
+    {
+      src: vehicle.interiorImage || "https://images.unsplash.com/photo-1552849397-02041a5c9832?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1650&q=80",
+      alt: `${vehicle.title} - Interior View`,
+      type: 'interior' as const
+    },
+    {
+      src: vehicle.detailImage || "https://images.unsplash.com/photo-1626668893627-6632f0e20fd1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1650&q=80",
+      alt: `${vehicle.title} - Detail View`,
+      type: 'detail' as const
+    }
+  ];
   
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      <main className="flex-1">
+      <main className="flex-1 pt-20">
         {/* Hero Section */}
-        <div className="relative h-[60vh] bg-dssilver-900">
-          <img 
-            src={vehicle.image} 
-            alt={vehicle.title}
-            className="w-full h-full object-cover opacity-80"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-dssilver-900 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 right-0 p-8">
-            <div className="container mx-auto">
-              <button 
-                onClick={handleGoBack}
-                className="flex items-center text-white mb-4 hover:underline transition-all"
-              >
-                <ChevronLeft className="mr-1 h-5 w-5" /> Back to listings
-              </button>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">{vehicle.title}</h1>
-              <div className="flex flex-wrap items-center gap-4 text-white">
-                <span className="bg-dsblue-500 px-4 py-1 rounded-full text-white font-medium">
-                  {vehicle.price}
-                </span>
-                <span className="text-dssilver-200">
-                  {vehicle.brand} • {vehicle.year} • {vehicle.mileage} miles
-                </span>
-              </div>
+        <div className="bg-dssilver-50 py-6">
+          <div className="container mx-auto px-4">
+            <button 
+              onClick={handleGoBack}
+              className="flex items-center text-dssilver-700 mb-4 hover:text-dsblue-500 transition-all"
+            >
+              <ChevronLeft className="mr-1 h-5 w-5" /> Back to listings
+            </button>
+            
+            {/* Search Filter */}
+            <div className="mb-8">
+              <SearchFilter onFilterChange={handleFilterChange} />
+            </div>
+            
+            {/* Vehicle image carousel */}
+            <VehicleImageCarousel 
+              images={vehicleImages} 
+              vehicleName={vehicle.title} 
+            />
+            
+            <h1 className="text-4xl md:text-5xl font-bold mb-2">{vehicle.title}</h1>
+            <div className="flex flex-wrap items-center gap-4">
+              <span className="bg-dsblue-500 px-4 py-1 rounded-full text-white font-medium">
+                {vehicle.price}
+              </span>
+              <span className="text-dssilver-600">
+                {vehicle.brand} • {vehicle.year} • {vehicle.mileage} miles
+              </span>
             </div>
           </div>
         </div>
@@ -195,7 +225,7 @@ const VehicleDetail = () => {
             
             {/* Sidebar */}
             <div className="lg:col-span-1">
-              <div className="bg-dssilver-50 rounded-lg shadow-md p-6 sticky top-4">
+              <div className="bg-dssilver-50 rounded-lg shadow-md p-6 sticky top-24">
                 <h2 className="text-2xl font-bold mb-4">Interested in this {vehicle.brand}?</h2>
                 <p className="text-dssilver-700 mb-6">
                   Fill out the form below and one of our vehicle specialists will get in touch with you shortly.
@@ -213,7 +243,7 @@ const VehicleDetail = () => {
           <div className="mt-16">
             <h2 className="text-2xl font-bold mb-6">You Might Also Like</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {vehicles
+              {filteredVehicles
                 .filter(v => v.id !== vehicle.id && v.brand === vehicle.brand)
                 .slice(0, 3)
                 .map(relatedVehicle => (
