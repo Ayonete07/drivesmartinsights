@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Dialog, 
   DialogContent, 
@@ -10,7 +10,8 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious
+  CarouselPrevious,
+  type CarouselApi
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 
@@ -31,17 +32,32 @@ const VehicleImageCarousel: React.FC<VehicleImageCarouselProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [mainApi, setMainApi] = useState<CarouselApi>();
+  const [modalApi, setModalApi] = useState<CarouselApi>();
 
+  // Handle image click to open modal
   const handleImageClick = (index: number) => {
     setCurrentImageIndex(index);
     setIsOpen(true);
   };
+
+  // Control the main carousel
+  useEffect(() => {
+    if (!mainApi) return;
+    mainApi.scrollTo(currentImageIndex);
+  }, [mainApi, currentImageIndex]);
+
+  // Control the modal carousel
+  useEffect(() => {
+    if (!modalApi || !isOpen) return;
+    modalApi.scrollTo(currentImageIndex);
+  }, [modalApi, currentImageIndex, isOpen]);
   
   return (
     <>
       {/* Main Carousel */}
       <div className="relative mb-8">
-        <Carousel className="w-full">
+        <Carousel className="w-full" setApi={setMainApi}>
           <CarouselContent>
             {images.map((image, index) => (
               <CarouselItem key={index}>
@@ -84,7 +100,7 @@ const VehicleImageCarousel: React.FC<VehicleImageCarouselProps> = ({
       {/* Fullscreen Modal */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="sm:max-w-4xl">
-          <Carousel className="w-full" defaultIndex={currentImageIndex}>
+          <Carousel className="w-full" setApi={setModalApi}>
             <CarouselContent>
               {images.map((image, index) => (
                 <CarouselItem key={index}>
