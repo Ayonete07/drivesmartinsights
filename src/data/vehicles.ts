@@ -319,4 +319,20 @@ export const vehicles: Vehicle[] = [
     color: "Platinum White"
   },
   {
-    id: "
+    id: "honda-3",
+    image: "https://images.unsplash.com/photo-1563720223185-11003d516935?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1650&q=80",
+    interiorImage: "https://images.unsplash.com/photo-1621246337271-4f686f4f1593?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1650&q=80",
+    detailImage: "https://images.unsplash.com/photo-1565967511849-76a60a516170?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1650&q=80",
+    title: "2023 Honda Civic Si",
+    price: "$27,500",
+    description: "Sport-tuned compact sedan delivering a perfect balance of performance and efficiency.",
+    features: ["FWD", "1.5L Turbo", "6-Speed Manual", "Sport Suspension", "9\" Touchscreen"],
+    brand: "Honda",
+    year: 2023,
+    mileage: "5,432",
+    fuelType: "Gasoline",
+    transmission: "Manual",
+    bodyType: "Sedan",
+    color: "Blazing Orange"
+  }
+];
