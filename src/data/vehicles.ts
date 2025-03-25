@@ -1,3 +1,4 @@
+
 // Car data organized by brand
 export interface Vehicle {
   id: string;
@@ -16,6 +17,14 @@ export interface Vehicle {
   bodyType: string;
   color: string;
 }
+
+// Extract unique values from vehicles array to create filter options
+// This will be exported below after the vehicles array is defined
+const extractUniqueValues = (key: keyof Vehicle) => {
+  return Array.from(new Set(vehicles.map(vehicle => vehicle[key])))
+    .filter(Boolean)
+    .sort() as string[];
+};
 
 export const vehicles: Vehicle[] = [
   // Audi
@@ -336,3 +345,13 @@ export const vehicles: Vehicle[] = [
     color: "Blazing Orange"
   }
 ];
+
+// Export filter options extracted from the vehicles data
+export const brands = extractUniqueValues('brand');
+export const bodyTypes = extractUniqueValues('bodyType');
+export const fuelTypes = extractUniqueValues('fuelType');
+export const transmissionTypes = extractUniqueValues('transmission');
+export const colors = extractUniqueValues('color');
+export const years = Array.from(new Set(vehicles.map(vehicle => vehicle.year)))
+  .sort((a, b) => b - a) // Sort years in descending order
+  .map(year => year.toString());
