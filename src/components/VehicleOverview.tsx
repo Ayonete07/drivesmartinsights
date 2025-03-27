@@ -12,7 +12,7 @@ interface VehicleOverviewProps {
 
 const VehicleOverview: React.FC<VehicleOverviewProps> = ({ vehicle, apiDetails }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+    <div className="bg-dssilver-100 rounded-lg shadow-md p-6 mb-8">
       <h2 className="text-2xl font-bold mb-4">Overview</h2>
       <p className="text-dssilver-700 mb-6">{vehicle.description}</p>
       
@@ -29,7 +29,7 @@ const VehicleOverview: React.FC<VehicleOverviewProps> = ({ vehicle, apiDetails }
           image="https://images.unsplash.com/photo-1560253023-3ec5d502959f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
           buttonText="Learn about our trade-in program"
           buttonLink="#contact"
-          theme="light"
+          theme="dark"
         />
       </div>
     </div>

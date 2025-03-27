@@ -5,44 +5,44 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 240 10% 3.9%; /* Dark background */
+    --foreground: 0 0% 98%; /* Light text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 240 10% 3.9%; /* Dark card background */
+    --card-foreground: 0 0% 98%; /* Light card text */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 240 10% 3.9%; /* Dark popover background */
+    --popover-foreground: 0 0% 98%; /* Light popover text */
 
-    --primary: 0 84% 60%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 0 84% 60%; /* Red primary color */
+    --primary-foreground: 210 40% 98%; /* Light text on primary */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 240 3.7% 15.9%; /* Dark secondary color */
+    --secondary-foreground: 0 0% 98%; /* Light text on secondary */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 240 3.7% 15.9%; /* Dark muted color */
+    --muted-foreground: 240 5% 64.9%; /* Medium gray text */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 240 3.7% 15.9%; /* Dark accent color */
+    --accent-foreground: 0 0% 98%; /* Light text on accent */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%; /* Red destructive color */
+    --destructive-foreground: 210 40% 98%; /* Light text on destructive */
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 0 84% 60%;
+    --border: 240 3.7% 15.9%; /* Dark border color */
+    --input: 240 3.7% 15.9%; /* Dark input color */
+    --ring: 0 84% 60%; /* Red ring color */
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 0 84% 60%;
+    --sidebar-background: 240 10% 3.9%; /* Dark sidebar */
+    --sidebar-foreground: 240 5.3% 75%; /* Light text in sidebar */
+    --sidebar-primary: 240 5.9% 90%; /* Light primary in sidebar */
+    --sidebar-primary-foreground: 240 10% 3.9%; /* Dark text on primary sidebar */
+    --sidebar-accent: 240 4.8% 20%; /* Dark accent in sidebar */
+    --sidebar-accent-foreground: 240 5.9% 90%; /* Light text on accent sidebar */
+    --sidebar-border: 240 3.7% 15.9%; /* Dark border in sidebar */
+    --sidebar-ring: 0 84% 60%; /* Red ring in sidebar */
   }
 }
 
@@ -96,12 +96,12 @@ html {
 }
 
 .btn-secondary {
-  @apply bg-white text-gray-800 border border-gray-200 hover:border-gray-300 transition-colors duration-300 rounded-md px-4 py-2 shadow-sm;
+  @apply bg-dssilver-200 text-dssilver-800 border border-dssilver-300 hover:border-dssilver-400 transition-colors duration-300 rounded-md px-4 py-2 shadow-sm;
 }
 
-/* Glass effect */
+/* Glass effect for dark theme */
 .glass {
-  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-sm;
+  @apply bg-dssilver-100/80 backdrop-blur-md border border-dssilver-200/20 shadow-sm;
 }
 
 /* Image hover zoom effect */
@@ -119,7 +119,7 @@ html {
 
 /* Vehicle card styling */
 .vehicle-card {
-  @apply overflow-hidden rounded-lg bg-white shadow-md hover:shadow-lg transition-shadow duration-300 animate-scale-in;
+  @apply overflow-hidden rounded-lg bg-dssilver-100 shadow-md hover:shadow-lg transition-shadow duration-300 animate-scale-in;
 }
 
 /* Animate on scroll */

@@ -77,16 +77,16 @@ export default {
 					900: '#63171B',
 				},
 				dssilver: {
-					50: '#F9FAFB',
-					100: '#F6F6F7',
-					200: '#E5E7EB',
-					300: '#D1D5DB',
-					400: '#9CA3AF',
-					500: '#8E9196',
-					600: '#6B7280',
-					700: '#4B5563',
-					800: '#1A1F2C',
-					900: '#111827',
+					50: '#1A1F2C',  // Changed to dark color
+					100: '#222222',  // Changed to dark color
+					200: '#333333',  // Changed to dark color
+					300: '#444444',  // Changed to dark color
+					400: '#666666',  // Changed to dark color
+					500: '#888888',  // Changed to dark color
+					600: '#AAAAAA',  // Changed to light gray for text
+					700: '#CCCCCC',  // Changed to light gray for text
+					800: '#EEEEEE',  // Changed to very light gray
+					900: '#FFFFFF',  // Changed to white
 				},
 			},
 			borderRadius: {
