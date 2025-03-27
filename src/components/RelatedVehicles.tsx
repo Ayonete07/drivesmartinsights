@@ -17,7 +17,7 @@ const RelatedVehicles: React.FC<RelatedVehiclesProps> = ({
 
   return (
     <div className="mt-16">
-      <h2 className="text-2xl font-bold mb-6">You Might Also Like</h2>
+      <h2 className="text-2xl font-bold mb-6 text-foreground">You Might Also Like</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {filteredVehicles
           .filter(v => v.id !== currentVehicleId && v.brand === currentBrand)
@@ -25,7 +25,7 @@ const RelatedVehicles: React.FC<RelatedVehiclesProps> = ({
           .map(relatedVehicle => (
             <div 
               key={relatedVehicle.id} 
-              className="vehicle-card cursor-pointer" 
+              className="vehicle-card cursor-pointer bg-dssilver-50/80 border border-dssilver-200/20" 
               onClick={() => navigate(`/vehicle/${relatedVehicle.id}`)}
             >
               <div className="img-hover-zoom h-48 relative">
@@ -35,7 +35,7 @@ const RelatedVehicles: React.FC<RelatedVehiclesProps> = ({
                   className="w-full h-full object-cover"
                   loading="lazy" 
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-dssilver-900/70 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-dssilver-50/90 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="flex justify-between items-end">
                     <h3 className="text-white font-medium">{relatedVehicle.title}</h3>

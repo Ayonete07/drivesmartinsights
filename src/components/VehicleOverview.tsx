@@ -12,8 +12,8 @@ interface VehicleOverviewProps {
 
 const VehicleOverview: React.FC<VehicleOverviewProps> = ({ vehicle, apiDetails }) => {
   return (
-    <div className="bg-dssilver-100 rounded-lg shadow-md p-6 mb-8">
-      <h2 className="text-2xl font-bold mb-4">Overview</h2>
+    <div className="bg-dssilver-100 rounded-lg shadow-md p-6 mb-8 border border-dssilver-200/20">
+      <h2 className="text-2xl font-bold mb-4 text-dssilver-800">Overview</h2>
       <p className="text-dssilver-700 mb-6">{vehicle.description}</p>
       
       <VehicleSpecifications vehicle={vehicle} />

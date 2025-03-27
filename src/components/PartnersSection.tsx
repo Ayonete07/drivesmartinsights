@@ -4,14 +4,14 @@ import { partners } from '@/data/partners';
 
 const PartnersSection = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-background">
       <div className="container mx-auto">
         <div className="text-center mb-12 reveal">
-          <span className="inline-block px-3 py-1 mb-4 bg-dssilver-100 text-dssilver-800 text-sm font-medium rounded-full">
+          <span className="inline-block px-3 py-1 mb-4 bg-dssilver-100 text-dssilver-700 text-sm font-medium rounded-full">
             Our Partners
           </span>
-          <h2 className="text-4xl font-bold mb-4">Trusted Automotive Brands</h2>
-          <p className="max-w-2xl mx-auto text-dssilver-700">
+          <h2 className="text-4xl font-bold mb-4 text-foreground">Trusted Automotive Brands</h2>
+          <p className="max-w-2xl mx-auto text-dssilver-600">
             We work with the world's leading automobile manufacturers to bring you quality vehicles and exceptional service.
           </p>
         </div>
@@ -26,11 +26,11 @@ const PartnersSection = () => {
                 <img 
                   src={partner.logo} 
                   alt={`${partner.name} logo`}
-                  className="max-h-full max-w-full object-contain"
+                  className="max-h-full max-w-full object-contain invert" /* Added invert to make logos visible on dark background */
                   loading="lazy"
                 />
               </div>
-              <h3 className="text-lg font-medium text-dssilver-800 mb-1">{partner.name}</h3>
+              <h3 className="text-lg font-medium text-dssilver-700 mb-1">{partner.name}</h3>
             </div>
           ))}
         </div>
