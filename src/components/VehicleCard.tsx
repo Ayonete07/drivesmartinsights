@@ -25,7 +25,7 @@ const VehicleCard = ({
   
   return (
     <div 
-      className="vehicle-card cursor-pointer"
+      className="vehicle-card cursor-pointer bg-dssilver-50/80 border border-dssilver-200/20"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => onClick(id)}
@@ -39,14 +39,14 @@ const VehicleCard = ({
         />
         <div 
           className={cn(
-            "absolute inset-0 bg-gradient-to-t from-dssilver-900/70 to-transparent transition-opacity duration-300",
-            isHovered ? "opacity-70" : "opacity-50"
+            "absolute inset-0 bg-gradient-to-t from-dssilver-50/90 to-transparent transition-opacity duration-300",
+            isHovered ? "opacity-80" : "opacity-60"
           )}
         />
         <div className="absolute bottom-4 left-4 right-4">
           <div className="flex justify-between items-end">
             <h3 className="text-white font-medium">{title}</h3>
-            <span className="text-white bg-dsblue-500/90 px-3 py-1 rounded-full text-sm">{price}</span>
+            <span className="text-white bg-red-500/90 px-3 py-1 rounded-full text-sm">{price}</span>
           </div>
         </div>
       </div>
@@ -69,8 +69,8 @@ const VehicleCard = ({
           className={cn(
             "w-full py-2 rounded-md transition-all duration-300 text-center",
             isHovered 
-              ? "bg-dsblue-500 text-white" 
-              : "bg-dssilver-100 text-dssilver-800"
+              ? "bg-red-500 text-white" 
+              : "bg-dssilver-100 text-dssilver-700"
           )}
         >
           Learn More

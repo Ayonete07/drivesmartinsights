@@ -57,11 +57,11 @@ const VehicleCategories = () => {
   };
   
   return (
-    <section id="vehicle-categories" className="py-16 bg-white">
+    <section id="vehicle-categories" className="py-16 bg-background">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Browse by Vehicle Type</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold mb-4 text-foreground">Browse by Vehicle Type</h2>
+          <p className="text-dssilver-600 max-w-2xl mx-auto">
             Explore our inventory by vehicle category to find exactly what you're looking for
           </p>
         </div>
@@ -71,11 +71,11 @@ const VehicleCategories = () => {
             <div 
               key={category.id}
               onClick={() => handleCategoryClick(category.id)}
-              className="flex flex-col items-center p-6 bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:border-red-200"
+              className="flex flex-col items-center p-6 bg-dssilver-100 border border-dssilver-200/20 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:border-red-500/30"
             >
               {category.icon}
-              <h3 className="text-lg font-semibold mb-2">{category.name}</h3>
-              <p className="text-gray-500 text-sm text-center">{category.description}</p>
+              <h3 className="text-lg font-semibold mb-2 text-dssilver-800">{category.name}</h3>
+              <p className="text-dssilver-600 text-sm text-center">{category.description}</p>
             </div>
           ))}
         </div>
