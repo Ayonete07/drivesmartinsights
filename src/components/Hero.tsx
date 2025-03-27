@@ -1,8 +1,12 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Search } from 'lucide-react';
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
   
   useEffect(() => {
     const onScroll = () => {
@@ -16,6 +20,13 @@ const Hero = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      navigate(`/?search=${encodeURIComponent(searchTerm)}`);
+    }
+  };
+
   return (
     <div 
       ref={heroRef}
@@ -27,7 +38,7 @@ const Hero = () => {
     >
       <div className="container mx-auto px-4 z-10">
         <div className="max-w-3xl animate-fade-up" style={{ animationDelay: '0.2s' }}>
-          <span className="inline-block px-3 py-1 mb-4 bg-dsblue-500/90 text-white text-sm font-medium rounded-full">
+          <span className="inline-block px-3 py-1 mb-4 bg-red-500/90 text-white text-sm font-medium rounded-full">
             Premium Vehicle Selection
           </span>
           <h1 className="text-white mb-6 font-bold">
@@ -36,8 +47,31 @@ const Hero = () => {
           <p className="text-white/90 text-lg mb-8 max-w-xl">
             Explore our curated collection of premium vehicles and find the perfect match for your lifestyle and needs.
           </p>
+          
+          {/* Hero Search Bar */}
+          <form onSubmit={handleSearch} className="mb-8 flex flex-col sm:flex-row gap-2 max-w-xl">
+            <div className="relative flex-grow">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Search className="h-5 w-5 text-gray-400" />
+              </div>
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search by make, model, or features..."
+                className="w-full pl-10 pr-4 py-3 border border-white/20 bg-black/30 backdrop-blur-sm text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              />
+            </div>
+            <button 
+              type="submit" 
+              className="bg-red-500 hover:bg-red-600 text-white py-3 px-6 rounded-md transition-colors duration-300"
+            >
+              Search
+            </button>
+          </form>
+          
           <div className="flex flex-wrap gap-4">
-            <a href="#vehicles" className="btn-primary text-base px-8 py-3">
+            <a href="#vehicles" className="bg-red-500 text-white hover:bg-red-600 transition-colors duration-300 rounded-md px-8 py-3 text-base">
               Explore Vehicles
             </a>
             <a href="#contact" className="bg-white/20 backdrop-blur-sm text-white border border-white/40 hover:bg-white/30 transition-colors duration-300 rounded-md px-8 py-3 text-base">
@@ -48,7 +82,7 @@ const Hero = () => {
       </div>
       
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a href="#vehicles" className="flex flex-col items-center text-white/80 hover:text-white">
+        <a href="#vehicle-categories" className="flex flex-col items-center text-white/80 hover:text-white">
           <span className="mb-2">Scroll Down</span>
           <svg 
             xmlns="http://www.w3.org/2000/svg" 

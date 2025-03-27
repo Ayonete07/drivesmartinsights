@@ -14,7 +14,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 199 84% 55%;
+    --primary: 0 84% 60%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -31,7 +31,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 199 84% 55%;
+    --ring: 0 84% 60%;
 
     --radius: 0.5rem;
 
@@ -42,7 +42,7 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 0 84% 60%;
   }
 }
 
@@ -92,11 +92,11 @@ html {
 
 /* Custom styling for buttons */
 .btn-primary {
-  @apply bg-dsblue-500 text-white hover:bg-dsblue-600 transition-colors duration-300 rounded-md px-4 py-2 shadow-sm;
+  @apply bg-red-500 text-white hover:bg-red-600 transition-colors duration-300 rounded-md px-4 py-2 shadow-sm;
 }
 
 .btn-secondary {
-  @apply bg-white text-dssilver-800 border border-dssilver-200 hover:border-dssilver-300 transition-colors duration-300 rounded-md px-4 py-2 shadow-sm;
+  @apply bg-white text-gray-800 border border-gray-200 hover:border-gray-300 transition-colors duration-300 rounded-md px-4 py-2 shadow-sm;
 }
 
 /* Glass effect */

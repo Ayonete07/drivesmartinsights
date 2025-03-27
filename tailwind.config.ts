@@ -63,18 +63,18 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom colors
-				dsblue: {
-					50: '#E6F7FF',
-					100: '#BAE3FF',
-					200: '#7CC4FA',
-					300: '#47A9F5',
-					400: '#1A91EB',
-					500: '#0EA5E9',
-					600: '#0072C6',
-					700: '#005EA3',
-					800: '#004680',
-					900: '#00365D',
+				// Custom colors (changed from blue to red)
+				dsred: {
+					50: '#FFF5F5',
+					100: '#FED7D7',
+					200: '#FEB2B2',
+					300: '#FC8181',
+					400: '#F56565',
+					500: '#E53E3E',
+					600: '#C53030',
+					700: '#9B2C2C',
+					800: '#822727',
+					900: '#63171B',
 				},
 				dssilver: {
 					50: '#F9FAFB',

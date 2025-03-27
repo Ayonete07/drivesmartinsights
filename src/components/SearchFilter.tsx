@@ -57,25 +57,25 @@ const SearchFilter = ({ onFilterChange }: SearchFilterProps) => {
   };
   
   return (
-    <div className="w-full bg-dssilver-50 p-4 rounded-lg mb-8 shadow-sm">
+    <div className="w-full bg-gray-50 p-4 rounded-lg mb-8 shadow-sm">
       <div className="flex flex-col md:flex-row gap-4">
         {/* Search input */}
         <div className="relative flex-grow">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-5 w-5 text-dssilver-400" />
+            <Search className="h-5 w-5 text-gray-400" />
           </div>
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search by make, model, or keywords..."
-            className="w-full pl-10 pr-4 py-2 border border-dssilver-200 rounded-md focus:outline-none focus:ring-2 focus:ring-dsblue-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
           />
         </div>
         
         {/* Filter button (mobile) */}
         <button
-          className="md:hidden flex items-center justify-center gap-2 bg-dsblue-500 text-white px-4 py-2 rounded-md hover:bg-dsblue-600 transition-colors"
+          className="md:hidden flex items-center justify-center gap-2 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors"
           onClick={() => setIsFilterOpen(!isFilterOpen)}
         >
           <Filter className="h-5 w-5" />
@@ -87,7 +87,7 @@ const SearchFilter = ({ onFilterChange }: SearchFilterProps) => {
           <select
             value={selectedBrand}
             onChange={(e) => setSelectedBrand(e.target.value)}
-            className="flex-grow bg-white border border-dssilver-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-dsblue-500 focus:border-transparent"
+            className="flex-grow bg-white border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
           >
             <option value="">All Brands</option>
             {brands.map(brand => (
@@ -98,7 +98,7 @@ const SearchFilter = ({ onFilterChange }: SearchFilterProps) => {
           <select
             value={selectedBodyType}
             onChange={(e) => setSelectedBodyType(e.target.value)}
-            className="flex-grow bg-white border border-dssilver-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-dsblue-500 focus:border-transparent"
+            className="flex-grow bg-white border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
           >
             <option value="">All Body Types</option>
             {bodyTypes.map(type => (
@@ -109,7 +109,7 @@ const SearchFilter = ({ onFilterChange }: SearchFilterProps) => {
           <select
             value={selectedFuelType}
             onChange={(e) => setSelectedFuelType(e.target.value)}
-            className="flex-grow bg-white border border-dssilver-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-dsblue-500 focus:border-transparent"
+            className="flex-grow bg-white border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
           >
             <option value="">All Fuel Types</option>
             {fuelTypes.map(type => (
@@ -120,7 +120,7 @@ const SearchFilter = ({ onFilterChange }: SearchFilterProps) => {
           <select
             value={selectedTransmission}
             onChange={(e) => setSelectedTransmission(e.target.value)}
-            className="flex-grow bg-white border border-dssilver-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-dsblue-500 focus:border-transparent"
+            className="flex-grow bg-white border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
           >
             <option value="">All Transmissions</option>
             {transmissionTypes.map(type => (
@@ -132,7 +132,7 @@ const SearchFilter = ({ onFilterChange }: SearchFilterProps) => {
           {(selectedBrand || selectedBodyType || selectedFuelType || selectedTransmission || searchTerm) && (
             <button
               onClick={clearFilters}
-              className="bg-dssilver-200 text-dssilver-800 px-3 py-2 rounded-md hover:bg-dssilver-300 transition-colors flex items-center gap-1"
+              className="bg-gray-200 text-gray-800 px-3 py-2 rounded-md hover:bg-gray-300 transition-colors flex items-center gap-1"
             >
               <X className="h-4 w-4" /> Clear
             </button>
@@ -142,13 +142,13 @@ const SearchFilter = ({ onFilterChange }: SearchFilterProps) => {
       
       {/* Mobile filter panel */}
       {isFilterOpen && (
-        <div className="md:hidden mt-4 p-4 bg-white rounded-md border border-dssilver-200 space-y-4">
+        <div className="md:hidden mt-4 p-4 bg-white rounded-md border border-gray-200 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-dssilver-700 mb-1">Brand</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Brand</label>
             <select
               value={selectedBrand}
               onChange={(e) => setSelectedBrand(e.target.value)}
-              className="w-full bg-white border border-dssilver-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-dsblue-500 focus:border-transparent"
+              className="w-full bg-white border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
             >
               <option value="">All Brands</option>
               {brands.map(brand => (
@@ -158,11 +158,11 @@ const SearchFilter = ({ onFilterChange }: SearchFilterProps) => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-dssilver-700 mb-1">Body Type</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Body Type</label>
             <select
               value={selectedBodyType}
               onChange={(e) => setSelectedBodyType(e.target.value)}
-              className="w-full bg-white border border-dssilver-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-dsblue-500 focus:border-transparent"
+              className="w-full bg-white border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
             >
               <option value="">All Body Types</option>
               {bodyTypes.map(type => (
@@ -172,11 +172,11 @@ const SearchFilter = ({ onFilterChange }: SearchFilterProps) => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-dssilver-700 mb-1">Fuel Type</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Fuel Type</label>
             <select
               value={selectedFuelType}
               onChange={(e) => setSelectedFuelType(e.target.value)}
-              className="w-full bg-white border border-dssilver-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-dsblue-500 focus:border-transparent"
+              className="w-full bg-white border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
             >
               <option value="">All Fuel Types</option>
               {fuelTypes.map(type => (
@@ -186,11 +186,11 @@ const SearchFilter = ({ onFilterChange }: SearchFilterProps) => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-dssilver-700 mb-1">Transmission</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Transmission</label>
             <select
               value={selectedTransmission}
               onChange={(e) => setSelectedTransmission(e.target.value)}
-              className="w-full bg-white border border-dssilver-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-dsblue-500 focus:border-transparent"
+              className="w-full bg-white border border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
             >
               <option value="">All Transmissions</option>
               {transmissionTypes.map(type => (
@@ -202,13 +202,13 @@ const SearchFilter = ({ onFilterChange }: SearchFilterProps) => {
           <div className="flex gap-2 pt-2">
             <button
               onClick={clearFilters}
-              className="flex-1 bg-dssilver-200 text-dssilver-800 py-2 rounded-md hover:bg-dssilver-300 transition-colors"
+              className="flex-1 bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300 transition-colors"
             >
               Clear Filters
             </button>
             <button
               onClick={() => setIsFilterOpen(false)}
-              className="flex-1 bg-dsblue-500 text-white py-2 rounded-md hover:bg-dsblue-600 transition-colors"
+              className="flex-1 bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition-colors"
             >
               Apply Filters
             </button>
