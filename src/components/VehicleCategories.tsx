@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Car, Truck, Bus, Van } from 'lucide-react';
+import { Car, Truck, Bus, Package, Zap } from 'lucide-react';
 
 interface CategoryItem {
   id: string;
@@ -35,7 +35,7 @@ const VehicleCategories = () => {
     {
       id: 'vans',
       name: 'Vans',
-      icon: <Van className="w-10 h-10 mb-4 text-red-500" />,
+      icon: <Package className="w-10 h-10 mb-4 text-red-500" />,
       description: 'Perfect for families and businesses'
     },
     {
@@ -47,7 +47,7 @@ const VehicleCategories = () => {
     {
       id: 'electric',
       name: 'Electric Vehicles',
-      icon: <Car className="w-10 h-10 mb-4 text-red-500" />,
+      icon: <Zap className="w-10 h-10 mb-4 text-red-500" />,
       description: 'Zero emissions, full performance'
     }
   ];
